@@ -45,6 +45,11 @@ struct vector3
     // Subscript operator
     double& operator[](int i);
     const double& operator[](int i) const;
+
+    // Arithmetic operations
+    vector3& operator+=(const vector3& rhs);
+    vector3& operator-=(const vector3& rhs);
+    vector3& operator*=(const double rhs);
 };
 
 struct vector3u
@@ -54,7 +59,7 @@ struct vector3u
     
     // Constructor
     vector3u(double x=0, double y=0, double z=1);
-    vector3u(const vector3& v);
+    explicit vector3u(const vector3& v);
     // Destructor
     ~vector3u() = default;
     // Copy Constructor
@@ -88,6 +93,15 @@ struct vector4
     vector4& operator=(const vector4&) = default;
     // Move Assignment
     vector4& operator=(vector4&&) = default;
+
+    // Subscript operator
+    double& operator[](int i);
+    const double& operator[](int i) const;
+
+    // Arithmetic operations
+    vector4& operator+=(const vector4& rhs);
+    vector4& operator-=(const vector4& rhs);
+    vector4& operator*=(const double rhs);
 };
 
 
@@ -95,13 +109,32 @@ struct vector4
 // Vector print functions
 std::ostream& operator<<(std::ostream& os, const vector3& v);
 
+std::ostream& operator<<(std::ostream& os, const vector4& v);
 
-// Vector length functions
+
+// Vector magnitude functions
 double mag(const vector3& v);
+
+double mag(const vector4& v);
+
+
+// Vector arithmetic functions
+vector3 operator+(const vector3& lhs, const vector3& rhs);
+vector3 operator-(const vector3& lhs, const vector3& rhs);
+vector3 operator*(const vector3& lhs, const double rhs);
+vector3 operator*(const double lhs, const vector3& rhs);
+
+vector4 operator+(const vector4& lhs, const vector4& rhs);
+vector4 operator-(const vector4& lhs, const vector4& rhs);
+vector4 operator*(const vector4& lhs, const double rhs);
+vector4 operator*(const double lhs, const vector4& rhs);
 
 
 // Vector product functions
 double dot(const vector3& u, const vector3& v);
+vector3 cross(const vector3& u, const vector3& v);
+
+double dot(const vector4& u, const vector4& v);
 
 
 #endif
