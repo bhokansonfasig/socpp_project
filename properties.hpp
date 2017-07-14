@@ -16,6 +16,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
+// #include "sm_particles.hpp"
 
 
 // Error for unknown particle name
@@ -73,14 +75,13 @@ class base_props
 };
 
 
-
 // Main properties struct
 struct properties
 {
     public:
         // Constructors
-        explicit properties(const std::string& particle_name="unknown");
-        explicit properties(base_props& props);
+        explicit properties(const std::string& particle_name);
+        explicit properties(const base_props& props=base_props{{"null","unknown"},0,0,0});
         // Destructor
         ~properties() = default;
         // Copy Constructor
@@ -94,15 +95,18 @@ struct properties
 
         // Name matching function
         template <typename T, typename U>
-        U match_name(const std::string& name, const std::map<T,U>& map) const
+        std::unique_ptr<U> match_name(const std::string& name, const std::map<T,U>& map) const
         {
             for (std::pair<T,U> prop_pair : map)
             {
-                if (prop_pair.second.name_matches(name)) {return prop_pair.second;}
+                if (prop_pair.second.name_matches(name))
+                {
+                    return std::make_unique<U>(prop_pair.second);
+                }
             }
             throw bad_particle_name(name);
         }
-        auto match_name(const std::string& name) const;
+        std::unique_ptr<base_props> match_name(const std::string& name) const;
 
         std::string name;
         std::string fullname;
@@ -110,30 +114,6 @@ struct properties
         double charge;
         double spin;
 };
-
-
-
-// Definitions for Standard Model particle map
-enum class sm_particle {unknown, photon, electron};
-
-class sm_props : public base_props
-{
-    using base_props::base_props;
-    public:
-        virtual double get_mass_in_kilograms() const override;
-        virtual double get_charge_in_coulombs() const override;
-        virtual double get_spin_quantum_number() const override;
-};
-
-
-namespace {
-std::map<sm_particle, sm_props> sm_property_map =
-{
-    {sm_particle::unknown, sm_props{{"null","unknown","unknown particle"}, 0, 0, 0}},
-    {sm_particle::photon, sm_props{{"photon","gamma","photon"}, 0, 0, 1}},
-    {sm_particle::electron, sm_props{{"e-","electron"}, .511, -1, 1/2}}
-};
-}
 
 
 #endif
