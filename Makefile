@@ -8,7 +8,7 @@ $(BINDIR)/test_vectors : test_vectors.cpp vector.cpp
 $(BINDIR)/test_properties : test_properties.cpp properties.cpp sm_particles.cpp nuc_particles.cpp
 	clang++ -std=c++14 -stdlib=libc++ $^ -o $@
 
-$(BINDIR)/test_particles : test_particles.cpp particle.cpp properties.cpp vector.cpp
+$(BINDIR)/test_particles : test_particles.cpp particle.cpp properties.cpp sm_particles.cpp nuc_particles.cpp vector.cpp
 	clang++ -std=c++14 -stdlib=libc++ $^ -o $@
 
 # may need to add -Weverything flag or similar at some point
