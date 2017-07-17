@@ -58,13 +58,13 @@ class base_props
         base_props& operator=(base_props&&) = default;
 
         // Getter functions
-        virtual std::string get_nickname() const;
-        virtual std::string get_fullname() const;
-        virtual double get_mass_in_kilograms() const {return mass_;}
-        virtual double get_charge_in_coulombs() const {return charge_;}
-        virtual double get_spin_quantum_number() const {return spin_;}
+        virtual const std::string get_nickname() const;
+        virtual const std::string get_fullname() const;
+        virtual const double get_mass_in_kilograms() const {return mass_;}
+        virtual const double get_charge_in_coulombs() const {return charge_;}
+        virtual const double get_spin_quantum_number() const {return spin_;}
 
-        virtual bool name_matches(const std::string& name) const;
+        virtual const bool name_matches(const std::string& name) const;
 
     protected:
         std::vector<std::string> names_;

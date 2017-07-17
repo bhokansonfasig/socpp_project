@@ -13,9 +13,9 @@ class nuc_props : public base_props
 {
     using base_props::base_props;
     public:
-        virtual double get_mass_in_kilograms() const override;
-        virtual double get_charge_in_coulombs() const override;
-        virtual double get_spin_quantum_number() const override;
+        virtual const double get_mass_in_kilograms() const override;
+        virtual const double get_charge_in_coulombs() const override;
+        virtual const double get_spin_quantum_number() const override;
 };
 
 

@@ -1,19 +1,19 @@
 #include "sm_particles.hpp"
 
 // Standard Model particle properties getter overrides
-double sm_props::get_mass_in_kilograms() const
+const double sm_props::get_mass_in_kilograms() const
 {
     // Convert MeV to kg
     return mass_ * 1.7826619e-30;
 }
 
-double sm_props::get_charge_in_coulombs() const
+const double sm_props::get_charge_in_coulombs() const
 {
     // Convert factor of electron charge to coulombs
     return charge_ * 1.60217662e-19;
 }
 
-double sm_props::get_spin_quantum_number() const
+const double sm_props::get_spin_quantum_number() const
 {
     // Confirm that spin is a factor of 1/2
     double check = 2*spin_;

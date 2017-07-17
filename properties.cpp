@@ -31,19 +31,19 @@ properties::properties(const base_props& props)
 
 
 // Base particle properties name functions
-std::string base_props::get_nickname() const
+const std::string base_props::get_nickname() const
 {
     if (names_.empty()) {return "";}
     else {return names_.front();}
 }
 
-std::string base_props::get_fullname() const
+const std::string base_props::get_fullname() const
 {
     if (names_.empty()) {return "";}
     else {return names_.back();}
 }
 
-bool base_props::name_matches(const std::string& name) const
+const bool base_props::name_matches(const std::string& name) const
 {
     for (std::string name_ : names_)
     {

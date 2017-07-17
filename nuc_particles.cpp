@@ -1,19 +1,19 @@
 #include "nuc_particles.hpp"
 
 // Standard Model particle properties getter overrides
-double nuc_props::get_mass_in_kilograms() const
+const double nuc_props::get_mass_in_kilograms() const
 {
     // Convert amu to kg
     return mass_ * 1.660539e-27;
 }
 
-double nuc_props::get_charge_in_coulombs() const
+const double nuc_props::get_charge_in_coulombs() const
 {
     // Convert factor of electron charge to coulombs
     return charge_ * 1.60217662e-19;
 }
 
-double nuc_props::get_spin_quantum_number() const
+const double nuc_props::get_spin_quantum_number() const
 {
     // Confirm that spin is a factor of 1/2
     double check = 2*spin_;
