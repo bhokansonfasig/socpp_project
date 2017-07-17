@@ -59,6 +59,9 @@ int main()
     std::cout << "Test cross product: ";
     std::cout << u << "x" << vector3(0,1,0) << "=" << cross(u,vector3(0,1,0)) << std::endl;
 
+    // Trying to normalize (0,0,0) should cause an error
+    // vector3u u3{0,0,0};
+
 
     std::cout << "\n---------- Testing vector4 ----------" << std::endl;
     std::cout << "Test default construction: ";

@@ -94,7 +94,15 @@ vector3u::vector3u(const vector3& v)
 double vector3u::normed(const vector3& v, int component)
 {
     assert(component<3);
-    return v[component] / mag(v);
+    double len = mag(v);
+    if (len==0 || isnan(len)) {
+        std::ostringstream oss;
+        oss << "Vector " << v << " cannot be normalized to length 1";
+        throw std::domain_error(oss.str());
+    }
+    else {
+        return v[component] / len;
+    }
 }
 
 
