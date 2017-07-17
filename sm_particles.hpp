@@ -4,7 +4,9 @@
 #ifndef __SM_PARTICLES_HPP_INCLUDED__
 #define __SM_PARTICLES_HPP_INCLUDED__
 
+#include <cmath>
 #include <map>
+#include <sstream>
 #include "properties.hpp"
 
 class sm_props : public base_props

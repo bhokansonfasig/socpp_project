@@ -4,7 +4,9 @@
 #ifndef __NUC_PARTICLES_HPP_INCLUDED__
 #define __NUC_PARTICLES_HPP_INCLUDED__
 
+#include <cmath>
 #include <map>
+#include <sstream>
 #include "properties.hpp"
 
 class nuc_props : public base_props

@@ -17,7 +17,6 @@
 #include <vector>
 #include <map>
 #include <memory>
-// #include "sm_particles.hpp"
 
 
 // Error for unknown particle name
@@ -108,11 +107,11 @@ struct properties
         }
         std::unique_ptr<base_props> match_name(const std::string& name) const;
 
-        std::string name;
-        std::string fullname;
-        double mass;
-        double charge;
-        double spin;
+        const std::string name;
+        const std::string fullname;
+        const double mass;
+        const double charge;
+        const double spin;
 };
 
 

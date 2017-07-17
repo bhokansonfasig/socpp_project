@@ -23,4 +23,6 @@ int main()
     print_info(props3);
     properties props4("H-1 nucleus");
     print_info(props4);
+    properties props5("Ca-43 nucleus");
+    print_info(props5);
 }
