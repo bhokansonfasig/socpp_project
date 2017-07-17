@@ -16,41 +16,6 @@ class sm_props : public base_props
         virtual const double get_mass_in_kilograms() const override;
         virtual const double get_charge_in_coulombs() const override;
         virtual const double get_spin_quantum_number() const override;
-
-        // // Standard Model particle properties getter overrides
-        // virtual double get_mass_in_kilograms() const override
-        // {
-        //     // Convert MeV to kg
-        //     return mass_ * 1.7826619e-30;
-        // }
-
-        // virtual double get_charge_in_coulombs() const override
-        // {
-        //     // Convert factor of electron charge to coulombs
-        //     return charge_ * 1.60217662e-19;
-        // }
-
-        // virtual double get_spin_quantum_number() const override
-        // {
-        //     // Confirm that spin is a factor of 1/2
-        //     double check = 2*spin_;
-        //     if (check == std::floor(check)) {return spin_;}
-        //     else
-        //     {
-        //         std::string name;
-        //         try
-        //         {
-        //             name = get_fullname();
-        //             name = " ("+name+")";
-        //         }
-        //         catch (...) {name = "";}
-
-        //         std::ostringstream oss;
-        //         oss << "Spin of Standard Model particle" << name << " must be a whole or half integer (not " << spin_ << ")";
-        //         throw std::invalid_argument(oss.str());
-        //     }
-        // }
-
 };
 
 
