@@ -12,15 +12,23 @@
 #ifndef __PARTICLE_HPP_INCLUDED__
 #define __PARTICLE_HPP_INCLUDED__
 
+#include <cmath>
 #include <iostream>
+#include <sstream>
+#include <string>
 #include "vector.hpp"
 #include "properties.hpp"
+
+const double c_0 = 299792458;
+
 
 class particle
 {
     public:
-        // Constructor
+        // Constructors
         particle() = default;
+        explicit particle(const std::string& name);
+        explicit particle(const properties& props);
         // Destructor
         ~particle() = default;
         // Copy Constructor
@@ -40,12 +48,27 @@ class particle
         const double get_spin() const {return props_.spin;}
         const vector4 get_position() const {return position_;}
         const vector4 get_momentum() const {return momentum_;}
+        const vector3 get_direction() const;
+        const double get_energy() const;
+        const double get_kinetic() const;
+
+        // Setter functions
+        void set_position(const vector4& position);
+        void set_position(const double time, const vector3& position);
+        void set_momentum(const vector4& momentum);
+        void set_momentum(const vector3& momentum);
+        void set_momentum(const double energy, const vector3u& direction);
+        void set_direction(const vector3u& direction);
+        void set_energy(const double energy);
+        void set_kinetic(const double ke);
 
 
     private:
         properties props_;
         vector4 position_;
         vector4 momentum_;
+
+        void set_defaults();
 };
 
 
