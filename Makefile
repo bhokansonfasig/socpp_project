@@ -1,6 +1,9 @@
 BINDIR = build
 
-all: $(BINDIR)/test_vectors $(BINDIR)/test_properties $(BINDIR)/test_particles
+all: $(BINDIR)/test_ids $(BINDIR)/test_vectors $(BINDIR)/test_properties $(BINDIR)/test_particles
+
+$(BINDIR)/test_ids : test_ids.cpp uniqueid.cpp
+	clang++ -std=c++14 -stdlib=libc++ $^ -o $@
 
 $(BINDIR)/test_vectors : test_vectors.cpp vector.cpp
 	clang++ -std=c++14 -stdlib=libc++ $^ -o $@
