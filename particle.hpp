@@ -16,8 +16,9 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "vector.hpp"
 #include "properties.hpp"
+#include "uniqueid.hpp"
+#include "vector.hpp"
 
 const double c_0 = 299792458;
 
@@ -41,6 +42,7 @@ class particle
         particle& operator=(particle&&) = default;
 
         // Getter functions
+        const uniqueID get_id() const {return id_;}
         const std::string get_name() const {return props_.name;}
         const std::string get_fullname() const {return props_.fullname;}
         const double get_mass() const {return props_.mass;}
@@ -64,6 +66,7 @@ class particle
 
 
     private:
+        const uniqueID id_;
         properties props_;
         vector4 position_;
         vector4 momentum_;

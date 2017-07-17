@@ -132,5 +132,5 @@ void particle::set_kinetic(const double ke)
 // Particle print function
 std::ostream& operator<<(std::ostream& os, const particle& p)
 {
-    return os << p.get_name();
+    return os << p.get_name() << " (" << p.get_id() << ")";
 }
