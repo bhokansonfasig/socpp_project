@@ -77,41 +77,40 @@ class base_props
 // Main properties struct
 struct properties
 {
-    public:
-        // Constructors
-        explicit properties(const std::string& particle_name);
-        explicit properties(const base_props& props=base_props{{"null","unknown"},0,0,0});
-        // Destructor
-        ~properties() = default;
-        // Copy Constructor
-        properties(const properties&) = default;
-        // Move Constructor
-        properties(properties&&) = default;
-        // Copy Assignment
-        properties& operator=(const properties&) = default;
-        // Move Assignment
-        properties& operator=(properties&&) = default;
+    const std::string name;
+    const std::string fullname;
+    const double mass;
+    const double charge;
+    const double spin;
 
-        // Name matching function
-        template <typename T, typename U>
-        std::unique_ptr<U> match_name(const std::string& name, const std::map<T,U>& map) const
+    // Constructors
+    explicit properties(const std::string& particle_name);
+    explicit properties(const base_props& props=base_props{{"null","unknown"},0,0,0});
+    // Destructor
+    ~properties() = default;
+    // Copy Constructor
+    properties(const properties&) = default;
+    // Move Constructor
+    properties(properties&&) = default;
+    // Copy Assignment
+    properties& operator=(const properties&) = default;
+    // Move Assignment
+    properties& operator=(properties&&) = default;
+
+    // Name matching function
+    template <typename T, typename U>
+    std::unique_ptr<U> match_name(const std::string& name, const std::map<T,U>& map) const
+    {
+        for (std::pair<T,U> prop_pair : map)
         {
-            for (std::pair<T,U> prop_pair : map)
+            if (prop_pair.second.name_matches(name))
             {
-                if (prop_pair.second.name_matches(name))
-                {
-                    return std::make_unique<U>(prop_pair.second);
-                }
+                return std::make_unique<U>(prop_pair.second);
             }
-            throw bad_particle_name(name);
         }
-        std::unique_ptr<base_props> match_name(const std::string& name) const;
-
-        const std::string name;
-        const std::string fullname;
-        const double mass;
-        const double charge;
-        const double spin;
+        throw bad_particle_name(name);
+    }
+    std::unique_ptr<base_props> match_name(const std::string& name) const;
 };
 
 
